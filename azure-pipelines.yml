@@ -123,8 +123,9 @@ stages:
               sqlPassword: '$(adminPassword)'
               deployType: 'DacpacTask'
               deploymentAction: 'Script'
-              dacpacFile: '$(Pipeline.Workspace)/dropDacpac/Tailspin.SpaceGame.Database/bin/Debug/Tailspin.SpaceGame.Database.dacpac'
+              dacpacFile: '$(Pipeline.Workspace)/dropDacpac/Tailspin.SpaceGame.Database/bin/$(buildConfiguration)/Tailspin.SpaceGame.Database.dacpac'
               ipDetectionMethod: 'AutoDetect'
+              AdditionalArguments: /p:ScriptDatabaseOptions=False
           - task: PowerShell@2
             displayName: Show Auto Generated SQL Script
             inputs:
@@ -197,7 +198,7 @@ stages:
               sqlPassword: '$(adminPassword)'
               deployType: 'DacpacTask'
               deploymentAction: 'Publish'
-              dacpacFile: '$(Pipeline.Workspace)/dropDacpac/Tailspin.SpaceGame.Database/bin/Debug/Tailspin.SpaceGame.Database.dacpac'
+              dacpacFile: '$(Pipeline.Workspace)/dropDacpac/Tailspin.SpaceGame.Database/bin/$(buildConfiguration)/Tailspin.SpaceGame.Database.dacpac'
               ipDetectionMethod: 'AutoDetect'
           - task: PowerShell@2
             displayName: 'Remove "schemaChanged" pipeline variable'
